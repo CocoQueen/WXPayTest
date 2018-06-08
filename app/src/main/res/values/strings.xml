@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">WXPayTest</string>
+    <string name="app_tip">提示</string>
+    <string name="getting_prepayid">获取订单...</string>
+    <string name="get_prepayid_fail">获取订单失败</string>
+    <string name="get_prepayid_succ">获取订单成功</string>
+    <string name="action_cancel">取消订单</string>
+</resources>
