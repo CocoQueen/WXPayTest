@@ -12,6 +12,9 @@ import com.coco.wxpaytest.utils.WxUtils;
 import com.google.gson.Gson;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -88,13 +91,26 @@ public class TestActivity extends AppCompatActivity{
                 //假装请求了服务端信息，并获取了appid、partnerId、prepayId
 
                 OkHttpClient okHttpClient = new OkHttpClient();
-                FormBody body = new FormBody.Builder()
-                        .add("id","")
-                        .build();
+//                FormBody body = new FormBody.Builder()
+//                        .add("payOrderRequest","string")
+//                        .build();
+                FormBody.Builder fBuilder = new FormBody.Builder();
+                FormBody formBody = null;
+                HashMap<String,String>map=new HashMap<>();
+                map.put("payOrderRequest","59b74ff0526dcd63a559c084");
+                if (map != null && !map.isEmpty()) {
+                    Set<Map.Entry<String, String>> entrySet = map.entrySet();
+                    for (Map.Entry<String, String>entrys:entrySet){
+                        fBuilder.add(entrys.getKey(),entrys.getValue());
+
+                    }
+                    formBody=fBuilder.build();
+                }
+
                 final Request request = new Request.Builder()
                         .addHeader("x-auth-token", "x-auth-token")
                         .url(Constant.BASE_URL+Constant.ORDER_WX_PAY)
-                        .post(body)
+                        .post(formBody)
                         .build();
                 Call call = okHttpClient.newCall(request);
 
@@ -120,8 +136,8 @@ public class TestActivity extends AppCompatActivity{
                         //假装请求了服务器 获取到了所有的数据
                         WxUtils.WXPayBuilder builder = new WxUtils.WXPayBuilder();
                         builder.setAppId(Constant.APP_ID)
-                                .setPartnerId(partnerId)
-                                .setPrepayId(prepayId)
+                                .setPartnerId("59b74fe2526dcd63a559c082")
+                                .setPrepayId("59b74fe2526dcd63a559c082")
                                 .setPackageValue(packageValue)
                                 .build()
                                 .toWXPayAndSign(TestActivity.this,Constant.APP_ID,Constant.APP_KEY);
