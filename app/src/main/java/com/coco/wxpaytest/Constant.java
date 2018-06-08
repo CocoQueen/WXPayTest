@@ -7,7 +7,7 @@ package com.coco.wxpaytest;
 public class Constant {
 
 
-    public static final String BASE_URL = "api.heydaycn.com/";
+    public static final String BASE_URL = "https://api.heydaycn.com/";
 
 
     public static final String APP_ID="wx31c4379fe132ef18";
